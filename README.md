@@ -1,0 +1,2 @@
+# comiclog
+Comic Logger Project
