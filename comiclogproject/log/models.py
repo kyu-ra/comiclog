@@ -22,7 +22,7 @@ eras = [
 
 class Comic(models.Model):
     comic_name = models.CharField("Comic Name", max_length=200)
-    issue_num = models.IntegerField("Issue Number", blank=True)
+    issue_num = models.IntegerField("Issue Number", blank=True, null=True)
     pub_date = models.DateField("Date Published")
 
     # To define what era the comic was from. this needs to be moved outside the model
@@ -43,7 +43,7 @@ class Comic(models.Model):
         "2": "Didn't Like",
         "1": "Hated",
     }
-    rating = models.CharField("Rating", max_length=1, choices=RATINGS, blank=True)
+    rating = models.CharField("Rating", max_length=1, choices=RATINGS, blank=True, null=True)
 
     def __str__(self):
         return self.comic_name
