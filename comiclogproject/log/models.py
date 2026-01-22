@@ -22,19 +22,29 @@ eras = [
 
 class Comic(models.Model):
     comic_name = models.CharField("Comic Name", max_length=200)
-    issue_num = models.IntegerField("Issue Number", null=True)
+    issue_num = models.IntegerField("Issue Number", blank=True)
     pub_date = models.DateField("Date Published")
-    era = models.CharField("Era", max_length=200)
-    rating = models.IntegerField("Rating", null=True)
 
-    def __str__(self):
-        return self.comic_name
-    
-    def whatEra(self):
+    # To define what era the comic was from. this needs to be moved outside the model
+    def whatEra(pubdate):
         i = len(eras) - 1
         while i < len(eras):
-            if(self.pub_date > eras[i][1]):
+            if(pubdate > eras[i][1]):
                 return eras[i]
             else:
                 i -= 1
+
+    read = models.BooleanField("Read", default=False)
+
+    RATINGS = {
+        "5": "Loved",
+        "4": "Liked",
+        "3": "Neutral",
+        "2": "Didn't Like",
+        "1": "Hated",
+    }
+    rating = models.CharField("Rating", max_length=1, choices=RATINGS, blank=True)
+
+    def __str__(self):
+        return self.comic_name
  
