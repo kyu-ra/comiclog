@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Comics List</title>
+  </head>
+  <body>
+    {% if latest_comic_list %}
+    <ul>
+    {% for comic in latest_comic_list %}
+        <li><a href="/polls/{{ id }}/">{{ comic.comic_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comics are available.</p>
+{% endif %}
+  </body>
+</html>
