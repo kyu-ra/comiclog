@@ -46,5 +46,8 @@ class Comic(models.Model):
     rating = models.CharField("Rating", max_length=1, choices=RATINGS, blank=True, null=True)
 
     def __str__(self):
-        return self.comic_name
+        name = self.comic_name
+        if self.issue_num is not None:
+            name += ", #" + str(self.issue_num)
+        return name
  
