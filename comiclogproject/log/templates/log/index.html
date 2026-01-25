@@ -8,7 +8,7 @@
     {% if latest_comic_list %}
     <ul>
     {% for comic in latest_comic_list %}
-        <li><a href="/log/{{ comic.id }}/">{{ comic.comic_name }}</a></li>
+        <li><a href="{% url 'log:detail' comic.id %}">{{ comic.comic_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

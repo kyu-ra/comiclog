@@ -10,7 +10,22 @@
     <p>Read: {{ comic.read }}</p>
     <p>Rating: {{ comic.rating }}</p>
     
+    <form action="{% url 'log:detail' comic.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Log</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <input type="checkbox" name="read" id="read-id" value="{{ read.id }}">
+        <label for="read-id">"Read?"</label><br>
 
+        {% for choice in comicref.RATINGS %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice }}</label><br>
+        {% endfor %}
+        
+    </fieldset>
+    <input type="submit" value="Update">
+    </form>
   </body>
 </html>
 
