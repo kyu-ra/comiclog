@@ -24,8 +24,9 @@ class Comic(models.Model):
     comic_name = models.CharField("Comic Name", max_length=200)
     issue_num = models.IntegerField("Issue Number", blank=True, null=True)
     pub_date = models.DateField("Date Published")
+    pub_date_exact = models.BooleanField("Exact Publication Date Known", default=True)
 
-    # To define what era the comic was from. this needs to be moved outside the model
+    # To define what era the comic was from
     def whatEra(pubdate):
         i = len(eras) - 1
         while i < len(eras):

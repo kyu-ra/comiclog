@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.template import loader
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render, get_object_or_404
 
 from .models import Comic
 
@@ -10,5 +10,6 @@ def index(request):
     return render(request, "log/index.html", context)
 
 def detail(request, id):
-    return HttpResponse("You're looking at comic %s." % id)
+    comic = get_object_or_404(Comic, pk=id)
+    return(render(request, "log/detail.html", {"comic": comic}))
 
