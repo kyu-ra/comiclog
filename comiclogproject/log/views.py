@@ -12,5 +12,5 @@ def index(request):
 
 def detail(request, id):
     comic = get_object_or_404(Comic, pk=id)
-    return(render(request, "log/detail.html", {"comic": comic}, {"comicref": ref}))
+    return(render(request, "log/detail.html", {"comic": comic}))
 
